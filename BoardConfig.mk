@@ -56,7 +56,7 @@ TARGET_BOARD_INFO_FILE := $(DEVICE_PATH)/board-info.txt
 TARGET_OTA_ASSERT_DEVICE := ASUS_X00TD,X00TD,X00T
 
 # Kernel
-BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200,n8 androidboot.console=ttyMSM0 earlycon=msm_serial_dm,0xc170000 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 sched_enable_hmp=1 sched_enable_power_aware=1 service_locator.enable=1 swiotlb=1 firmware_class.path=/vendor/firmware_mnt/image loop.max_part=16
+BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200,n8 androidboot.console=ttyMSM0 earlycon=msm_serial_dm,0xc170000 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 sched_enable_hmp=1 sched_enable_power_aware=1 service_locator.enable=1 swiotlb=1 loop.max_part=16
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
@@ -247,26 +247,6 @@ include device/qcom/sepolicy-legacy-um/sepolicy.mk
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR += $(DEVICE_PATH)/sepolicy/private
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 SELINUX_IGNORE_NEVERALLOWS := true
-
-# TWRP Support
-ifeq ($(WITH_TWRP),true)
-TARGET_RECOVERY_DEVICE_DIRS += device/asus/X00TD/twrp
-TARGET_RECOVERY_DEVICE_DIRS += vendor/asus/X00TD/twrp
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-RECOVERY_SDCARD_ON_DATA := true
-TARGET_RECOVERY_QCOM_RTC_FIX := true
-TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
-TW_EXCLUDE_DEFAULT_USB_INIT := true
-TW_EXCLUDE_SUPERSU := true
-TW_EXTRA_LANGUAGES := true
-TW_INCLUDE_CRYPTO := true
-TW_INCLUDE_NTFS_3G := true
-TW_INPUT_BLACKLIST := "hbtp_vm"
-TW_MAX_BRIGHTNESS := 200
-TW_DEFAULT_BRIGHTNESS := 70
-TW_THEME := portrait_hdpi
-TW_SCREEN_BLANK_ON_BOOT := true
-endif
 
 # Treble
 BOARD_VNDK_VERSION := current
